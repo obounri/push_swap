@@ -1,0 +1,17 @@
+{
+    "files.associations": {
+        "*.py": "python",
+        "push_swap.h": "c",
+        "unistd.h": "c",
+        "cstdlib": "c",
+        "climits": "c",
+        "cmath": "c",
+        "cstdarg": "c",
+        "cstdio": "c",
+        "type_traits": "c",
+        "limits": "c",
+        "*.tcc": "c",
+        "cstdint": "c",
+        "typeinfo": "c"
+    }
+}

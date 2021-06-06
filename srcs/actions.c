@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unixpassword <unixpassword@student.42.f    +#+  +:+       +#+        */
+/*   By: obounri <obounri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 16:11:57 by obounri           #+#    #+#             */
-/*   Updated: 2021/06/05 21:24:36 by unixpasswor      ###   ########.fr       */
+/*   Updated: 2021/06/06 21:03:25 by obounri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,30 @@ void	rrot(t_stack *stack_a, t_stack *stack_b, int action)
 	ret2 = rotate(stack_b, 'x');
 	if ((ret1 || ret2) && action == 1)
 		ft_putstr_fd("rr\n", 1);
+}
+
+void	vizualize(t_stack *stack_a, t_stack *stack_b)
+{
+	t_list	*tmp_a = NULL; // test
+	t_list	*tmp_b;
+
+	printf("stack [a] :\n");
+	// printf("pos min = [%d]\n", min(stack_a));
+	tmp_a = stack_a->head->next;
+	while (tmp_a)
+	{
+		printf("[%d] pos = [%d]\n", tmp_a->value, tmp_a->pos);
+		tmp_a = tmp_a->next;
+	}
+	printf("len = %d\n\n", stack_a->len);
+
+	printf("stack [b] :\n");
+	tmp_b = stack_b->head->next;
+	while (tmp_b)
+	{
+		printf("[%d] pos = [%d]\n", tmp_b->value, tmp_b->pos);
+		tmp_b = tmp_b->next;
+	}
+	// printf("pos min = [%d]\n", min(stack_a));
+	printf("len = %d\n\n****************\n\n", stack_b->len);
 }

@@ -3,99 +3,91 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obounri <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: obounri <obounri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 15:12:40 by obounri           #+#    #+#             */
-/*   Updated: 2019/11/13 16:46:29 by obounri          ###   ########.fr       */
+/*   Updated: 2021/06/06 21:47:50 by obounri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		word_length(char const *s, char c)
+static int  word_size(char const *s, char c)
 {
-	unsigned int i;
-
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i] != '\0' && !(s[i] == c))
-		i++;
-	return (i);
+    int i;
+    i = 0;
+    while (s[i] != '\0' && s[i] != c)
+    {
+        i++;
+    }
+    return (i);
 }
-
-size_t	str_word_count(char const *s, char c)
+static int  words_number(char const *s, char c)
 {
-	char			*trimmed;
-	char			set[2];
-	unsigned int	i;
-	unsigned int	wc;
-
-	set[0] = c;
-	set[1] = '\0';
-	trimmed = ft_strtrim(s, (char const *)&set);
-	i = 0;
-	if (ft_strlen((char const *)trimmed) == 0)
-		return (i);
-	wc = 1;
-	while (trimmed[i] != '\0')
-	{
-		if (trimmed[i] == c)
-			wc++;
-		while (trimmed[i] == c)
-			i++;
-		i++;
-	}
-	return (wc);
+    int i;
+    int len;
+    i = 0;
+    len = 0;
+    while (s[i] != '\0')
+    {
+        if ((s[i] != c && s[i + 1] == '\0') || (s[i] != c && s[i + 1] == c))
+            len++;
+        i++;
+    }
+    return (len);
 }
-
-void	freetabs(char **splited, unsigned int index)
+static void free_tabs(char **tab, int index)
 {
-	unsigned int i;
-
-	i = 0;
-	while (i < index)
-	{
-		free(splited[i]);
-		i++;
-	}
-	free(splited);
-	splited = NULL;
+    int i;
+    i = 0;
+    while (i < index)
+    {
+        free(tab[i]);
+        i++;
+    }
+    free(tab);
+    tab = NULL;
 }
-
-char	**aammer(char **splited, char const *s, char c, unsigned int i)
+static char **fill(char const *s, char **tab, int leny, char c)
 {
-	unsigned int index;
-	unsigned int len;
-
-	index = 0;
-	while (s[i] != '\0' && (index < str_word_count(s, c)))
-	{
-		while ((s[i] == c) && s[i] != '\0')
-			i++;
-		len = word_length(&s[i], c);
-		if (!(splited[index] = ft_substr(s, i, len)))
-		{
-			freetabs(splited, index);
-			return (0);
-		}
-		index++;
-		i += len;
-	}
-	splited[index] = 0;
-	return (splited);
+    int lenx;
+    int x;
+    int y;
+    y = -1;
+    while (++y < leny)
+    {
+        while (*s == c)
+            s++;
+        lenx = word_size(s, c);
+        x = 0;
+        tab[y] = malloc(sizeof(char) * (lenx + 1));
+        if (!(tab[y]))
+        {
+            free_tabs(tab, y);
+            return (NULL);
+        }
+        while (x < lenx)
+        {
+            tab[y][x++] = *s;
+            s++;
+        }
+        tab[y][x] = '\0';
+    }
+    return (tab);
 }
-
-char	**ft_split(char const *s, char c)
+char    **ft_split(char const *s, char c)
 {
-	char			**splited;
-	unsigned int	i;
-
-	if (!s || !(splited = (char **)malloc((str_word_count(s, c) + 1)
-					* sizeof(char *))))
-		return (0);
-	i = 0;
-	if (!(splited = aammer(splited, s, c, i)))
-		return (0);
-	return (splited);
+    char    **tab;
+    int     leny;
+    if (!s)
+        return (NULL);
+    leny = words_number(s, c);
+    tab = (char **)malloc(sizeof(char *) * (leny + 1));
+    if (!(tab))
+        return (NULL);
+    tab = fill(s, tab, leny, c);
+    if (!(tab))
+        return (NULL);
+    tab[leny] = 0;
+    return (tab);
 }

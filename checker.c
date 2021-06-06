@@ -34,27 +34,27 @@ int    execute(char *input, t_stack  *stack_a, t_stack   *stack_b)
     i = 0;
     while (actions[i] != NULL)
     {
-        if (!ft_strncmp(actions[i], "sa", 3))
+        if (!ft_strncmp(actions[i], "sa", ft_strlen(actions[i])))
             swap(stack_a, 'x');
-        else if (!ft_strncmp(actions[i], "sb", 3))
+        else if (!ft_strncmp(actions[i], "sb", ft_strlen(actions[i])))
             swap(stack_b, 'x');
-        else if (!ft_strncmp(actions[i], "ss", 3))
+        else if (!ft_strncmp(actions[i], "ss", ft_strlen(actions[i])))
             swaps(stack_a, stack_b, 0);
-        else if (!ft_strncmp(actions[i], "pa", 3))
+        else if (!ft_strncmp(actions[i], "pa", ft_strlen(actions[i])))
             push(stack_b, stack_a, 'x');
-        else if (!ft_strncmp(actions[i], "pb", 3))
+        else if (!ft_strncmp(actions[i], "pb", ft_strlen(actions[i])))
             push(stack_a, stack_b, 'x');
-        else if (!ft_strncmp(actions[i], "ra", 3))
+        else if (!ft_strncmp(actions[i], "ra", ft_strlen(actions[i])))
             rotate(stack_a, 'x');
-        else if (!ft_strncmp(actions[i], "rb", 3))
+        else if (!ft_strncmp(actions[i], "rb", ft_strlen(actions[i])))
             rotate(stack_b, 'x');
-        else if (!ft_strncmp(actions[i], "rr", 3))
+        else if (!ft_strncmp(actions[i], "rr", ft_strlen(actions[i])))
             rrot(stack_a, stack_b, 0);
-        else if (!ft_strncmp(actions[i], "rra", 3))
+        else if (!ft_strncmp(actions[i], "rra", ft_strlen(actions[i])))
             rrotate(stack_a, 'x');
-        else if (!ft_strncmp(actions[i], "rrb", 3))
+        else if (!ft_strncmp(actions[i], "rrb", ft_strlen(actions[i])))
             rrotate(stack_b, 'x');
-        else if (!ft_strncmp(actions[i], "rrr", 3))
+        else if (!ft_strncmp(actions[i], "rrr", ft_strlen(actions[i])))
             rrrot(stack_a, stack_b, 0);
         else
             return (0);
@@ -80,11 +80,11 @@ void    read_exec(t_stack *stack_a, t_stack *stack_b)
     if (actions)
         ret = execute(actions, stack_a, stack_b);
     if (ret != 1)
-        ft_putstr_fd("Errors\n", 2);
+        ft_putstr_fd("Errors1\n", 2);
     else if (sorted(stack_a) && stack_b->head->next == NULL && ret == 1)
         ft_putstr_fd("OK\n", 1);
-    // else if (sorted(stack_a))
-    //     ft_putstr_fd("OK\n", 1);
+    else if (sorted(stack_a))
+        ft_putstr_fd("OK\n", 1);
     else
         ft_putstr_fd("KO\n", 1);
 }
@@ -100,7 +100,7 @@ int		main(int ac, char **av)
 		stack_b = malloc(sizeof(t_stack));
 		stack_a = init_stacks(&av[1], stack_a, stack_b);
 		if (!(stack_a))
-			ft_putstr_fd("Errors\n", 2);
+			ft_putstr_fd("Errors2\n", 2);
 		else
 		{
             read_exec(stack_a, stack_b);

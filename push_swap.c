@@ -6,16 +6,16 @@
 /*   By: obounri <obounri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 15:57:57 by obounri           #+#    #+#             */
-/*   Updated: 2021/06/06 21:23:44 by obounri          ###   ########.fr       */
+/*   Updated: 2021/06/07 18:38:52 by obounri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
 
-int		main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_stack *stack_a;
-	t_stack *stack_b;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 
 	if (ac >= 2)
 	{
@@ -26,12 +26,8 @@ int		main(int ac, char **av)
 			ft_putstr_fd("Error\n", 2);
 		else
 		{
-			// vizualize(stack_a, stack_b);
 			if (!sorted(stack_a))
-			{
 				sort(stack_a, stack_b);
-				// vizualize(stack_a, stack_b);
-			}
 			free_stack(stack_a, stack_b);
 		}
 		free(stack_a);

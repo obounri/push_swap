@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting_10.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unixpassword <unixpassword@student.42.f    +#+  +:+       +#+        */
+/*   By: obounri <obounri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 18:46:04 by obounri           #+#    #+#             */
-/*   Updated: 2021/06/05 20:31:49 by unixpasswor      ###   ########.fr       */
+/*   Updated: 2021/06/08 15:27:37 by obounri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,31 @@ void	sort_10(t_stack *stack_a, t_stack *stack_b)
 	}
 	if (!sorted(stack_a))
 		sort_3(stack_a);
-	while (push(stack_b, stack_a, 'a') && (--counter));
+	while (push(stack_b, stack_a, 'a') && (--counter))
+		;
+}
+
+void	free_tabs(char **tab)
+{
+	int	i;
+
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
+	free(tab);
+}
+
+void	free_stack(t_stack	*stack_a, t_stack	*stack_b)
+{
+	t_list	*list;
+	t_list	*tmp;
+
+	list = stack_a->head;
+	while (list)
+	{
+		tmp = list->next;
+		free(list);
+		list = tmp;
+	}
+	free(stack_b->head);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lists.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unixpassword <unixpassword@student.42.f    +#+  +:+       +#+        */
+/*   By: obounri <obounri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 13:53:39 by obounri           #+#    #+#             */
-/*   Updated: 2021/06/05 20:10:32 by unixpasswor      ###   ########.fr       */
+/*   Updated: 2021/06/08 14:56:30 by obounri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,24 @@ t_list	*list_last(t_list *list, int b_last)
 	return (list);
 }
 
-int		new_element(t_stack *stack, char **new)
+int	new_element(t_stack *stack, char **new)
 {
-	t_list	*new_list;
-	t_list	*last;
-	int		i;
-	long long  atoi_ret;
+	t_list		*new_list;
+	t_list		*last;
+	int			i;
 
 	i = 0;
 	while (new[i])
 	{
 		last = list_last(stack->head, 0);
 		new_list = malloc(sizeof(t_list));
-		atoi_ret = ft_atoi(new[i]);
-		if (atoi_ret > INT_MAX || atoi_ret < INT_MIN)
+		if (ft_atoi(new[i]) > INT_MAX || ft_atoi(new[i]) < INT_MIN)
 		{
 			free_tabs(new);
 			return (0);
 		}
 		else
-			new_list->value = (int)atoi_ret;
+			new_list->value = (int)ft_atoi(new[i]);
 		new_list->pos = last->pos + 1;
 		new_list->next = NULL;
 		last->next = new_list;

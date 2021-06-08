@@ -12,6 +12,7 @@
         "limits": "c",
         "*.tcc": "c",
         "cstdint": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "signal.h": "c"
     }
 }

@@ -6,65 +6,34 @@
 /*   By: obounri <obounri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 17:49:03 by obounri           #+#    #+#             */
-/*   Updated: 2021/06/06 19:51:16 by obounri          ###   ########.fr       */
+/*   Updated: 2021/06/08 15:44:07 by obounri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	free_tabs(char **tab)
-{
-	int i;
-
-	i = -1;
-	while (tab[++i])
-		free(tab[i]);
-	free(tab);
-}
-
-void	free_stack(t_stack	*stack_a, t_stack	*stack_b)
-{
-	t_list	*list;
-	t_list	*tmp;
-	
-	list = stack_a->head;
-	while (list)
-	{
-		tmp = list->next;
-		free(list);
-		list = tmp;
-	}
-	free(stack_b->head);
-}
-
 int	is_number(char **nums)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (nums[i])
 	{
 		j = 0;
-		if ((nums[i][j] == '-' || nums[i][j] == '+') && (ft_strlen(nums[i]) == 1))
-		{
-			free_tabs(nums);
+		if ((nums[i][j] == '-' || nums[i][j] == '+')
+			&& (ft_strlen(nums[i]) == 1))
 			return (0);
-		}
 		else if (nums[i][j] == '-' || nums[i][j] == '+')
 			j++;
 		while (nums[i][j])
 		{
 			if (!ft_isdigit(nums[i][j]))
-			{
-				free_tabs(nums);
 				return (0);
-			}
 			j++;
 		}
 		i++;
 	}
-	free_tabs(nums);
 	return (1);
 }
 
@@ -95,14 +64,8 @@ int	duplicate(t_stack *stack)
 	return (0);
 }
 
-t_stack	*init_stacks(char **args, t_stack *stack_a, t_stack *stack_b)
+void	init_values(t_stack *stack_a, t_stack *stack_b)
 {
-	int	i;
-
-	i = -1;
-	while (args[++i])
-		if (!is_number(ft_split(args[i], ' ')))
-			return (NULL);
 	stack_a->len = 0;
 	stack_b->len = 0;
 	stack_a->head = malloc(sizeof(t_list));
@@ -111,6 +74,22 @@ t_stack	*init_stacks(char **args, t_stack *stack_a, t_stack *stack_b)
 	stack_b->head->next = NULL;
 	stack_a->head->pos = -1;
 	stack_b->head->pos = -1;
+}
+
+t_stack	*init_stacks(char **args, t_stack *stack_a, t_stack *stack_b)
+{
+	int		i;
+	char	**actions;
+
+	i = -1;
+	while (args[++i])
+	{
+		actions = ft_split(args[i], ' ');
+		if (!is_number(actions))
+			return (NULL);
+		free_tabs(actions);
+	}
+	init_values(stack_a, stack_b);
 	i = -1;
 	while (args[++i])
 		if (!new_element(stack_a, ft_split(args[i], ' ')))

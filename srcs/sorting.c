@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imannouc <imannouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: obounri <obounri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 19:07:25 by obounri           #+#    #+#             */
-/*   Updated: 2021/06/04 07:52:11 by imannouc         ###   ########.fr       */
+/*   Updated: 2021/06/08 15:01:45 by obounri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,10 @@
 void	push_chunks(t_stack *stack_a, t_stack *stack_b)
 {
 	int		i;
-	int		chunks;
 	t_list	*list_a;
 
 	i = 0;
-	if (stack_a->len <= 100)
-		chunks = 3;
-	else
-		chunks = 7;
-	while (i < chunks)
+	while (i < stack_a->chunks)
 	{
 		list_a = stack_a->head->next;
 		while (list_a)

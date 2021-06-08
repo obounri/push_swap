@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imannouc <imannouc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: obounri <obounri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 19:30:36 by obounri           #+#    #+#             */
-/*   Updated: 2021/06/04 07:14:59 by imannouc         ###   ########.fr       */
+/*   Updated: 2021/06/08 15:01:21 by obounri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,9 @@ void	partition(t_stack *stack)
 	}
 	bubble_sort(stack, &tmp_stack);
 	get_keys(stack, tmp_stack);
+	if (stack->len <= 100)
+		stack->chunks = 3;
+	else
+		stack->chunks = 7;
 	free(tmp_stack);
 }

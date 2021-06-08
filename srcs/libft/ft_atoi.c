@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unixpassword <unixpassword@student.42.f    +#+  +:+       +#+        */
+/*   By: obounri <obounri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 17:28:54 by obounri           #+#    #+#             */
-/*   Updated: 2021/06/05 19:23:20 by unixpasswor      ###   ########.fr       */
+/*   Updated: 2021/06/08 15:46:46 by obounri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-long long		ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
-	int i;
-	long long res;
-	int sign;
+	int			i;
+	long long	res;
+	int			sign;
 
 	i = 0;
 	res = 0;

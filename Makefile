@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: unixpassword <unixpassword@student.42.f    +#+  +:+       +#+         #
+#    By: obounri <obounri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/04 16:03:37 by obounri           #+#    #+#              #
-#    Updated: 2021/06/05 22:31:47 by unixpasswor      ###   ########.fr        #
+#    Updated: 2021/06/07 20:24:33 by obounri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,6 @@ LIBFT_SRCS = srcs/libft/ft_isdigit.c \
 	srcs/libft/ft_atoi.c \
 	srcs/libft/ft_putchar_fd.c \
 	srcs/libft/ft_strlen.c \
-	srcs/libft/ft_strtrim.c \
-	srcs/libft/ft_substr.c \
 	srcs/libft/ft_strncmp.c \
 	srcs/libft/ft_strdup.c
 

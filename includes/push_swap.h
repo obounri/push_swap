@@ -6,7 +6,7 @@
 /*   By: obounri <obounri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 19:43:41 by obounri           #+#    #+#             */
-/*   Updated: 2021/06/08 15:00:51 by obounri          ###   ########.fr       */
+/*   Updated: 2021/06/08 17:21:45 by obounri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_stack
 	int				len;
 	int				keys[7];
 	int				chunks;
+	int				err;
 }					t_stack;
 
 void		ft_putstr_fd(char *s, int fd);

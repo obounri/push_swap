@@ -6,7 +6,7 @@
 /*   By: obounri <obounri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 15:57:57 by obounri           #+#    #+#             */
-/*   Updated: 2021/06/07 18:38:52 by obounri          ###   ########.fr       */
+/*   Updated: 2021/06/08 17:51:42 by obounri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 		stack_a = malloc(sizeof(t_stack));
 		stack_b = malloc(sizeof(t_stack));
 		stack_a = init_stacks(&av[1], stack_a, stack_b);
-		if (!(stack_a))
+		if (stack_a->err == 1)
 			ft_putstr_fd("Error\n", 2);
 		else
 		{
@@ -30,10 +30,10 @@ int	main(int ac, char **av)
 				sort(stack_a, stack_b);
 			free_stack(stack_a, stack_b);
 		}
+		if (stack_a->err == 1)
+			free_stack(stack_a, stack_b);
 		free(stack_a);
 		free(stack_b);
 	}
-	else
-		ft_putstr_fd("Error\n", 2);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: obounri <obounri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 13:53:39 by obounri           #+#    #+#             */
-/*   Updated: 2021/06/08 14:56:30 by obounri          ###   ########.fr       */
+/*   Updated: 2021/06/08 17:54:14 by obounri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,13 @@ int	new_element(t_stack *stack, char **new)
 	while (new[i])
 	{
 		last = list_last(stack->head, 0);
-		new_list = malloc(sizeof(t_list));
 		if (ft_atoi(new[i]) > INT_MAX || ft_atoi(new[i]) < INT_MIN)
 		{
 			free_tabs(new);
 			return (0);
 		}
-		else
-			new_list->value = (int)ft_atoi(new[i]);
+		new_list = malloc(sizeof(t_list));
+		new_list->value = (int)ft_atoi(new[i]);
 		new_list->pos = last->pos + 1;
 		new_list->next = NULL;
 		last->next = new_list;
